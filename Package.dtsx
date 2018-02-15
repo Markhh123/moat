@@ -1,0 +1,1088 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/6/2017 10:16:41 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FTSQL003-WVIR-D"
+  DTS:CreatorName="ADFT\mark.hornsby"
+  DTS:DTSID="{CF342A51-DEF8-4C3E-B995-BE629A5420C9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.4457.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="81"
+  DTS:VersionGUID="{D94B9E27-C299-48A3-A5EB-0D54988D616A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Amazon S3 Connection Manager 1]"
+      DTS:CreationName="AMAZON.S3"
+      DTS:DTSID="{4BD98DE7-6988-47D6-8735-8BE1CA4D4542}"
+      DTS:ObjectName="Amazon S3 Connection Manager 1">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="ServerHost=s3-eu-west-1.amazonaws.com;ServerSecure=True;ServerRegularCalling=True;ServerUser=AKIAIEG2MQNJI2FPHXTQ;ServerTimeout=100;ProxyHost=;ProxyPort=80;ProxyUser=;">
+          <ServerPassword
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAn/F18+RPjUmmFW8BjWdGIwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAA50GVGFsz/8WwG8OHCQ4uPAAAAAASAAACgAAAAEAAAAAzfju3hafQc05ANx0Y4vlFYAAAAjQV6BUEf1CnprxTyWDJK0g6omPxZ3/7FBN2/vDi9iMGnRx4pVKeUdDGAPT03L56p2lsm/1/+UPAq79huoNj6GT+pCAA6G65d+mI+kikyEvNq1iBHd5hvchQAAAAVzzjVPWl0lX5gJSxjJd6lyJWUtA</ServerPassword>
+        </ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[mail]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{0FE144CA-BB2D-44EC-8D33-CA3619CD42C2}"
+      DTS:ObjectName="mail">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.svc.ft.com;UseWindowsAuthentication=True;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PostgreSQL30.ssas]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{505ED0FE-F165-4C6A-BFB7-C366E1C88504}"
+      DTS:ObjectName="PostgreSQL30.ssas">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=ssas;Dsn=PostgreSQL30;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DC23E193-29CD-4651-95B0-489EA9D23CF4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="accesskey">
+      <DTS:VariableValue
+        DTS:DataType="8">AKIAIEG2MQNJI2FPHXTQ</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DF8507F6-30C7-47F7-8262-D28719484252}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dateinterval">
+      <DTS:VariableValue
+        DTS:DataType="3">-2</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F46BA744-AC6F-4345-808A-91799F1E58C7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="datevalue">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CC9621CF-933B-4F7F-898D-96103FAB6FDA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="emailusers">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E5FC1F7B-E91F-4A5D-96BA-B3F5A5F81074}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="filename">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DE1A1D30-0D5E-45DF-BD23-0C5FFD7DA7AD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="filename_no_ext">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{699264CC-526A-4B1B-B55D-7D8E5944296A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="newfilename">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B3482031-0A4E-4AFF-880D-4CEEE479D47D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="oldfilename">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C5A4FA1E-DA7C-4E4D-9088-A88DFAB96806}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="secretaccesskey">
+      <DTS:VariableValue
+        DTS:DataType="8">mRb7RX2DN/oh38+/f1sIKjkh2aTMW8xeC1t/IYfk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A0EE9CDF-6FA2-408D-B202-CD365D10521A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="test1">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\moat load"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{2070FC59-8D50-400A-91FB-4C214CA9C01A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="moat load">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\moat load\load imp temp table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0bd3f7f8-8090-4f2c-9324-eeba1fd9fa6c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load imp temp table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"delete from ftdeepviewdb.facttable_moat_tmp
+;
+insert into ftdeepviewdb.facttable_moat_tmp
+select count(*) as countimp,(cast(line_item_id as varchar)  + '-' + creative_id + '-' + ad_unit_id + '-' + cast(time_stamp as date))as key ,
+line_item_id,creative_id,ad_unit_id,cast(time_stamp as date) as time_stamp
+--into ftdeepviewdb.facttable_moat_tmp
+from ftadvertdb.dfp_impressions di
+--right join ftdeepviewdb.facttable_moat fm on cast(line_item_id as varchar)  + '-' + creative_id + '-' + ad_unit_id + '-' + isnull(responsibility, 'UNKN') + '-' + isnull(di.industry , 'UNKN')+ '-' + isnull(position, 'UNKN') =fm.key 
+WHERE Cast( time_stamp as date) = " + "'"+ @[User::datevalue]  +  "'" + "
+group by line_item_id,creative_id,ad_unit_id,cast(time_stamp as date)"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{505ED0FE-F165-4C6A-BFB7-C366E1C88504}"
+              SQLTask:SqlStatementSource="delete from ftdeepviewdb.facttable_moat_tmp&#xA;;&#xA;insert into ftdeepviewdb.facttable_moat_tmp&#xA;select count(*) as countimp,(cast(line_item_id as varchar)  + '-' + creative_id + '-' + ad_unit_id + '-' + cast(time_stamp as date))as key ,&#xA;line_item_id,creative_id,ad_unit_id,cast(time_stamp as date) as time_stamp&#xA;--into ftdeepviewdb.facttable_moat_tmp&#xA;from ftadvertdb.dfp_impressions di&#xA;--right join ftdeepviewdb.facttable_moat fm on cast(line_item_id as varchar)  + '-' + creative_id + '-' + ad_unit_id + '-' + isnull(responsibility, 'UNKN') + '-' + isnull(di.industry , 'UNKN')+ '-' + isnull(position, 'UNKN') =fm.key &#xA;WHERE Cast( time_stamp as date) = ''&#xA;group by line_item_id,creative_id,ad_unit_id,cast(time_stamp as date)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\moat load\load moat fact table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{64b562eb-32e4-43e5-90b0-6a33d9facfef}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load moat fact table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"insert into ftdeepviewdb.facttable_moat
+select 
+cast(dfp_lineitemid as varchar) + '-' + dfp_creativeid + '-' + adunit_sublevel_id + '-' + cast(server_time as date) as key,
+dfp_lineitemid,
+dfp_creativeid,
+adunit_sublevel_id,sum(case when inview_viewable = true and nht = false then 1.0 else 0 end)/ mt.countimp * 100 as inview_true_percent,
+sum(case when inview_viewable = true and nht = false then 1.0 else 0 end)/mt.countimp as totalinviewimpressions,
+(sum(case when inview_measurable = true and nht = false then 1.0 else 0 end)/mt.countimp)  as totalmeasurableimpressions,
+(sum(case when inview_measurable = true then 1.0 else 0 end) + sum(case when inview_measurable = false then 1.0 else 0 end))/mt.countimp as totalimpressionsunfiltered,
+sum(case when inview_viewable = false then 1.0 else 0 end)/mt.countimp * 100 as inview_false,
+sum(case when nht = false then totalexposuretime end)/mt.countimp/1000  as totalinviewtime_average,
+sum(case when nht = false then totalexposuretime end)/mt.countimp  as totalinview_time,
+
+sum(case when nht = false then cast(activeinviewtime as numeric(15,2)) end)/ (sum(case when totalexposuretime &gt; 0 then totalexposuretime else 1 end))/mt.countimp * 100 as activeinviewtime_percent,
+sum(case when nht = false then cast(activeinviewtime as numeric(15,2)) end)/1000/mt.countimp as activeinviewtime,
+sum(case when nht = false then cast(activeinviewtime as numeric(15,2)) end)/ count(activeinviewtime)/1000 as activeinviewtime_average,
+sum(case when automated_browser = true then 1.0 end)/mt.countimp as automated_browser_rate,
+sum(case when incongruous_browser = true then 1.0 end)/mt.countimp  as incongruous_browser_rate,
+sum(case when data_center_traffic = true then 1.0 end)/mt.countimp  as data_center_traffic_rate,
+sum(case when isknownspider = true then 1.0 end)/mt.countimp  as isknownspider_rate,
+sum(case when nht = true then 1.0 end)/sum(case when nht_measurable = true then 1.0 end)/mt.countimp * 100 as nht_percent,--
+sum(case when nht = true then 1.0 end)/mt.countimp as nht_totalimpressions,
+sum(case when nht_measurable = true then 1.0 end)/mt.countimp as nhtmeasurableimpressions,
+sum(case when universalinteraction = true then 1.0 end)/mt.countimp as totalinteractions,
+sum(activepagedwell)/1000 /mt.countimp as activepagedwell_content,
+sum(case when scroll = true then 1.0  end)/mt.countimp  as scroll,
+count(scroll)/mt.countimp as scroll_count,
+sum(timeuntilinview)/1000.00/mt.countimp as timeuntilinview,
+sum(case when belowfoldad = true then 1.0 end)/mt.countimp  as belowfoldad,
+count(belowfoldad)/mt.countimp as belowfoldad_count,
+sum(case when nht = false and cast(activeinviewtime as numeric(15,2)) &gt; 5000 then 1.0 end)/mt.countimp as activeviewtime_count,
+sum(case when nht = false and cast(totalexposuretime as numeric(15,2)) &gt; 31000 then 31000.00 end)/1000/mt.countimp as activeviewtime_31secs,
+sum(case when nht = false and cast(totalexposuretime as numeric(15,2)) between 5000 and 31000 then cast(totalexposuretime as numeric(15,2)) end)/1000/mt.countimp  as activeviewtime_5_31secs,
+mt.countimp
+--into ftdeepviewdb.facttable_moat
+from ftdeepviewdb.moat_facttable fa
+left join ftdeepviewdb.facttable_moat_tmp mt on mt.key = cast(dfp_lineitemid as varchar) + '-' + dfp_creativeid + '-' + adunit_sublevel_id + '-' + cast(server_time as date)
+where fa.ad_position &lt;&gt; 'fullpage'
+and mt.time_stamp  = "  + "'"+ @[User::datevalue]  +  "'"  + "
+and cast(fa.server_time as date) = " +"'"+ @[User::datevalue]  +  "'"  + "
+group by dfp_lineitemid,
+dfp_creativeid,
+adunit_sublevel_id,
+cast(server_time as date) ,mt.countimp "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{505ED0FE-F165-4C6A-BFB7-C366E1C88504}"
+              SQLTask:SqlStatementSource="insert into ftdeepviewdb.facttable_moat&#xA;select &#xA;cast(dfp_lineitemid as varchar) + '-' + dfp_creativeid + '-' + adunit_sublevel_id + '-' + cast(server_time as date) as key,&#xA;dfp_lineitemid,&#xA;dfp_creativeid,&#xA;adunit_sublevel_id,sum(case when inview_viewable = true and nht = false then 1.0 else 0 end)/ mt.countimp * 100 as inview_true_percent,&#xA;sum(case when inview_viewable = true and nht = false then 1.0 else 0 end)/mt.countimp as totalinviewimpressions,&#xA;(sum(case when inview_measurable = true and nht = false then 1.0 else 0 end)/mt.countimp)  as totalmeasurableimpressions,&#xA;(sum(case when inview_measurable = true then 1.0 else 0 end) + sum(case when inview_measurable = false then 1.0 else 0 end))/mt.countimp as totalimpressionsunfiltered,&#xA;sum(case when inview_viewable = false then 1.0 else 0 end)/mt.countimp * 100 as inview_false,&#xA;sum(case when nht = false then totalexposuretime end)/mt.countimp/1000  as totalinviewtime_average,&#xA;sum(case when nht = false then totalexposuretime end)/mt.countimp  as totalinview_time,&#xA;&#xA;sum(case when nht = false then cast(activeinviewtime as numeric(15,2)) end)/ (sum(case when totalexposuretime &gt; 0 then totalexposuretime else 1 end))/mt.countimp * 100 as activeinviewtime_percent,&#xA;sum(case when nht = false then cast(activeinviewtime as numeric(15,2)) end)/1000/mt.countimp as activeinviewtime,&#xA;sum(case when nht = false then cast(activeinviewtime as numeric(15,2)) end)/ count(activeinviewtime)/1000 as activeinviewtime_average,&#xA;sum(case when automated_browser = true then 1.0 end)/mt.countimp as automated_browser_rate,&#xA;sum(case when incongruous_browser = true then 1.0 end)/mt.countimp  as incongruous_browser_rate,&#xA;sum(case when data_center_traffic = true then 1.0 end)/mt.countimp  as data_center_traffic_rate,&#xA;sum(case when isknownspider = true then 1.0 end)/mt.countimp  as isknownspider_rate,&#xA;sum(case when nht = true then 1.0 end)/sum(case when nht_measurable = true then 1.0 end)/mt.countimp * 100 as nht_percent,--&#xA;sum(case when nht = true then 1.0 end)/mt.countimp as nht_totalimpressions,&#xA;sum(case when nht_measurable = true then 1.0 end)/mt.countimp as nhtmeasurableimpressions,&#xA;sum(case when universalinteraction = true then 1.0 end)/mt.countimp as totalinteractions,&#xA;sum(activepagedwell)/1000 /mt.countimp as activepagedwell_content,&#xA;sum(case when scroll = true then 1.0  end)/mt.countimp  as scroll,&#xA;count(scroll)/mt.countimp as scroll_count,&#xA;sum(timeuntilinview)/1000.00/mt.countimp as timeuntilinview,&#xA;sum(case when belowfoldad = true then 1.0 end)/mt.countimp  as belowfoldad,&#xA;count(belowfoldad)/mt.countimp as belowfoldad_count,&#xA;sum(case when nht = false and cast(activeinviewtime as numeric(15,2)) &gt; 5000 then 1.0 end)/mt.countimp as activeviewtime_count,&#xA;sum(case when nht = false and cast(totalexposuretime as numeric(15,2)) &gt; 31000 then 31000.00 end)/1000/mt.countimp as activeviewtime_31secs,&#xA;sum(case when nht = false and cast(totalexposuretime as numeric(15,2)) between 5000 and 31000 then cast(totalexposuretime as numeric(15,2)) end)/1000/mt.countimp  as activeviewtime_5_31secs,&#xA;mt.countimp&#xA;--into ftdeepviewdb.facttable_moat&#xA;from ftdeepviewdb.moat_facttable fa&#xA;left join ftdeepviewdb.facttable_moat_tmp mt on mt.key = cast(dfp_lineitemid as varchar) + '-' + dfp_creativeid + '-' + adunit_sublevel_id + '-' + cast(server_time as date)&#xA;where fa.ad_position &lt;&gt; 'fullpage'&#xA;and mt.time_stamp  = ''&#xA;and cast(fa.server_time as date) = ''&#xA;group by dfp_lineitemid,&#xA;dfp_creativeid,&#xA;adunit_sublevel_id,&#xA;cast(server_time as date) ,mt.countimp " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\moat load.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{DD766798-D552-416E-95EE-99BC4F7273F7}"
+          DTS:From="Package\moat load\load imp temp table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\moat load\load moat fact table" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\rename files 1"
+      DTS:CreationName="CozyRoc.AmazonS3Task"
+      DTS:DelayValidation="True"
+      DTS:Description="Amazon S3 Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{87989880-aae2-426f-9803-113a2e2b6cfb}"
+      DTS:ExecutableType="CozyRoc.AmazonS3Task"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="rename files 1"
+      DTS:TaskContact="Amazon S3 Task; COZYROC LLC; SSIS+; © 2006-2017 COZYROC LLC; All Rights Reserved; http://www.cozyroc.com/;"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <AmazonS3Data
+          StopOnFailure="True"
+          Action="RenameRemoteFile"
+          IsLocalVariable="False"
+          Local="prod.ft.dw.source.moat/moat_daily_201709090001.csv"
+          ContentType="application/octet-stream"
+          AccessPolicy="privateACL"
+          AmazonS3Connection="Amazon S3 Connection Manager 1"
+          IsRemoteVariable="False"
+          Remote="prod.ft.dw.source.moat/moat_daily_201711060001.csv"
+          Result=""
+          ExtendedRemoteFileInfo="True"
+          IsRemoteWildcard="True"
+          NoFilesFail="True"
+          IncludeSubfolders="False"
+          IsFilterVariable="False"
+          Filter="" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\S3 Copy"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B2FF49A7-BDA0-4137-85C0-443A56F4208C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="S3 Copy">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\S3 Copy\filenameno extension"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{2A18CF9C-E53C-4950-A06E-503F6F76C375}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="filenameno extension"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::filename_no_ext]   = &quot;moat_daily_&quot; + substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;, @[User::dateinterval] , (DT_DBDATE) getdate()),1,4) + substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;, @[User::dateinterval] , (DT_DBDATE) getdate()),6,2)  + substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;, @[User::dateinterval] , (DT_DBDATE) getdate()),9,2)  + &quot;0001&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\S3 Copy\set date value"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{0F1E3774-785A-4BB8-AE1D-6E4B91306CDE}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="set date value"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::datevalue] =  substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;, @[User::dateinterval] , (DT_DBDATE) getdate()),1,4) + &quot;-&quot; + substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;, @[User::dateinterval] , (DT_DBDATE) getdate()),6,2)  + &quot;-&quot; + substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;, @[User::dateinterval] , (DT_DBDATE) getdate()),9,2)" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\S3 Copy\set filename"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{BF5004C6-2E54-43CD-96B8-FA078FDD3C01}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="set filename"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::filename]  = &quot;moat_daily_&quot; + substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;,  @[User::dateinterval] , (DT_DBDATE) getdate()),1,4) + substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;, @[User::dateinterval] , (DT_DBDATE) getdate()),6,2)  + substring((DT_WSTR, 20) DATEADD( &quot;Day&quot;, @[User::dateinterval] , (DT_DBDATE) getdate()),9,2)  + &quot;0001&quot; + &quot;.csv&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\S3 Copy\upload from s3"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b86bf260-d432-4942-97cb-2f2befd0fe29}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="upload from s3"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"COPY ftdeepviewdb.moat_facttable from " + "'s3://prod.ft.dw.source.moat/"  + @[User::filename]  + "'"
++ " credentials " +
+"'aws_access_key_id=" + @[User::accesskey] + ";aws_secret_access_key=" + @[User::secretaccesskey]+"'" +
+ "  delimiter" + " ',' " +
+" IGNOREHEADER 1
+REMOVEQUOTES"</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\S3 Copy\upload from s3.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{CFA5E223-6309-48C4-A865-F91E4216C5CC}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{C6D2BECC-8E53-48FF-988F-61447D0CA85D}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{505ED0FE-F165-4C6A-BFB7-C366E1C88504}"
+              SQLTask:SqlStatementSource="COPY ftdeepviewdb.moat_facttable from 's3://prod.ft.dw.source.moat/' credentials 'aws_access_key_id=AKIAIEG2MQNJI2FPHXTQ;aws_secret_access_key=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'  delimiter ','  IGNOREHEADER 1&#xA;REMOVEQUOTES" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\S3 Copy.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{ADFA00D6-0453-4CAC-BA38-C557639F973D}"
+          DTS:From="Package\S3 Copy\set filename"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\S3 Copy\filenameno extension" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\S3 Copy.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{22CB9FBB-A8EC-41B6-8F63-9BAC944F58A6}"
+          DTS:From="Package\S3 Copy\set date value"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\S3 Copy\upload from s3" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\S3 Copy.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{F8532B40-FC70-4417-B6AB-8B0C942A2451}"
+          DTS:From="Package\S3 Copy\filenameno extension"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\S3 Copy\set date value" />
+      </DTS:PrecedenceConstraints>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\S3 Copy.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{BD53B006-F0A2-4F02-B64E-596C7BFC2170}"
+          DTS:EventID="352643548"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{E559B0BF-CC9A-47E4-A49C-32740AB13D16}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\s3 delete files"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{27A15126-C5BE-4592-8EBC-009C5D99FC14}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="s3 delete files">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\s3 delete files\newfilename"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{66E6AFBA-5911-48BB-AF79-76F8B4C4B3C0}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="newfilename"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::newfilename] = &quot;prod.ft.dw.source.moat/&quot; + @[User::filename_no_ext]  + &quot;_archived.csv &quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\s3 delete files\oldfilename"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{30C03D50-B62B-4EDD-8EC8-1415785308F8}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="oldfilename"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::oldfilename] = &quot;prod.ft.dw.source.moat/&quot; +  @[User::filename]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\s3 delete files\rename files"
+          DTS:CreationName="CozyRoc.AmazonS3Task"
+          DTS:DelayValidation="True"
+          DTS:Description="Amazon S3 Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{F1F6FA22-A516-4F94-8E4A-0FB0F370AFC7}"
+          DTS:ExecutableType="CozyRoc.AmazonS3Task"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="rename files"
+          DTS:TaskContact="Amazon S3 Task; COZYROC LLC; SSIS+; © 2006-2017 COZYROC LLC; All Rights Reserved; http://www.cozyroc.com/;"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <AmazonS3Data
+              StopOnFailure="True"
+              Action="RenameRemoteFile"
+              IsLocalVariable="True"
+              Local="User::oldfilename"
+              ContentType="application/octet-stream"
+              AccessPolicy="privateACL"
+              AmazonS3Connection="Amazon S3 Connection Manager 1"
+              IsRemoteVariable="True"
+              Remote="User::newfilename"
+              Result=""
+              ExtendedRemoteFileInfo="True"
+              IsRemoteWildcard="True"
+              NoFilesFail="True"
+              IncludeSubfolders="False"
+              IsFilterVariable="False"
+              Filter="" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\s3 delete files.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{AED490C5-23AB-4D99-96B0-73C1489FC758}"
+          DTS:From="Package\s3 delete files\oldfilename"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\s3 delete files\newfilename" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\s3 delete files.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{A2BA381B-7AF4-42CA-BB73-681A6AB26888}"
+          DTS:From="Package\s3 delete files\newfilename"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\s3 delete files\rename files" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:DelayValidation="True"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{B5AB0A97-B077-4B5C-A7E9-8578A0FC6831}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::emailusers]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{0FE144CA-BB2D-44EC-8D33-CA3619CD42C2}"
+          SendMailTask:From="mark.hornsby@ft.com"
+          SendMailTask:Subject="Upload from S3 has failed" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task 1"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:DelayValidation="True"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{017526f6-c369-41d2-8701-df3c4adfd262}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task 1"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::emailusers]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{0FE144CA-BB2D-44EC-8D33-CA3619CD42C2}"
+          SendMailTask:From="mark.hornsby@ft.com"
+          SendMailTask:Subject="moat load has failed" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task 2"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:DelayValidation="True"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{c174bc35-7325-4c99-8a7e-abf0ed3e0b1e}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task 2"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::emailusers]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{0FE144CA-BB2D-44EC-8D33-CA3619CD42C2}"
+          SendMailTask:From="mark.hornsby@ft.com"
+          SendMailTask:Subject="S3 delete files has failed" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\set email users"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{C4731345-DB16-4D9B-AB35-4477ABEFB22B}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="set email users"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::emailusers]= &quot;deeperview@ft.com&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BB665E7E-29FD-43EB-9141-4F48386D37FE}"
+      DTS:From="Package\S3 Copy"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\moat load" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D2A259BF-A510-49B2-BCBA-6D4DFBAC9EB2}"
+      DTS:From="Package\moat load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\s3 delete files" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7DB1BA00-8625-4968-98D9-D8D191287C75}"
+      DTS:From="Package\set email users"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\S3 Copy" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{3F29B9E2-F8F9-4CC1-AE7A-A1EA0991A3A4}"
+      DTS:From="Package\S3 Copy"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Send Mail Task"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{4FC7CD78-9308-4CF5-A5D3-BCD866A291C7}"
+      DTS:From="Package\moat load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Send Mail Task 1"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{8AC646ED-AB56-4BCA-99D8-279C616BB2F3}"
+      DTS:From="Package\s3 delete files"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Send Mail Task 2"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\moat load\load imp temp table"
+          TopLeft="20,19" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\moat load\load moat fact table"
+          TopLeft="22,103" />
+        <EdgeLayout
+          Id="Package\moat load.PrecedenceConstraints[Constraint 3]"
+          TopLeft="107.5,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="215,200"
+          Size="215,243"
+          Id="Package\moat load"
+          TopLeft="271,145" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\rename files 1"
+          TopLeft="339,701" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\S3 Copy\filenameno extension"
+          TopLeft="8,85" />
+        <NodeLayout
+          Size="145,43"
+          Id="Package\S3 Copy\set date value"
+          TopLeft="26,169" />
+        <NodeLayout
+          Size="137,43"
+          Id="Package\S3 Copy\set filename"
+          TopLeft="23,13" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\S3 Copy\upload from s3"
+          TopLeft="24,237" />
+        <EdgeLayout
+          Id="Package\S3 Copy.PrecedenceConstraints[Constraint]"
+          TopLeft="94.5,55.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.3333333333333"
+              Start="0,0"
+              End="0,21.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\S3 Copy.PrecedenceConstraints[Constraint 1]"
+          TopLeft="98.8333333333333,211.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.3333333333333"
+              Start="0,0"
+              End="0,17.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\S3 Copy.PrecedenceConstraints[Constraint 4]"
+          TopLeft="98,127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="228,335"
+          Size="228,377"
+          Id="Package\S3 Copy"
+          TopLeft="21,144" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\s3 delete files\newfilename"
+          TopLeft="41,90" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\s3 delete files\oldfilename"
+          TopLeft="42,11" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\s3 delete files\rename files"
+          TopLeft="35,158" />
+        <EdgeLayout
+          Id="Package\s3 delete files.PrecedenceConstraints[Constraint 6]"
+          TopLeft="109.25,53">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\s3 delete files.PrecedenceConstraints[Constraint 7]"
+          TopLeft="106.75,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,243"
+          Size="205,286"
+          Id="Package\s3 delete files"
+          TopLeft="529,146" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Send Mail Task"
+          TopLeft="44,577" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Send Mail Task 1"
+          TopLeft="307,579" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Send Mail Task 2"
+          TopLeft="555,579" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\set email users"
+          TopLeft="55,48" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="249,332.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="95,55.5"
+              Start="0,0"
+              End="95,48">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="91,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="91,0"
+                    Point2="95,0"
+                    Point3="95,4" />
+                  <mssgle:LineSegment
+                    End="95,48" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="486,266.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43,22.5"
+              Start="0,0"
+              End="35.5,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.5,0"
+                    Point2="21.5,0"
+                    Point3="21.5,4" />
+                  <mssgle:LineSegment
+                    End="21.5,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.5,18.5"
+                    Point2="21.5,22.5"
+                    Point3="25.5,22.5" />
+                  <mssgle:LineSegment
+                    End="35.5,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="132.5,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="135,521">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16,56"
+              Start="0,0"
+              End="-16,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="-4,28" />
+                  <mssgle:LineSegment
+                    End="-12,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12,28"
+                    Point2="-16,28"
+                    Point3="-16,32" />
+                  <mssgle:LineSegment
+                    End="-16,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-23.24134765625,33,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="378.5,388">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,191"
+              Start="0,0"
+              End="8,183.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,91.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,91.5"
+                    Point2="0,95.5"
+                    Point3="4,95.5" />
+                  <mssgle:LineSegment
+                    End="4,95.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,95.5"
+                    Point2="8,95.5"
+                    Point3="8,99.5" />
+                  <mssgle:LineSegment
+                    End="8,183.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-11.24134765625,100.5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="633,432">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,147"
+              Start="0,0"
+              End="0,139.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,139.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,64.87548828125,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
